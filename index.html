@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portafolio Silvia Lopez</title>
+    <meta name="description"
+        content="Portafolio profesional sobre redes CCNA 1 con visualizaciones interactivas, topologías de red y proyectos." />
+    <style>
+        /* =====================
+    1) ESTILOS GLOBALES
+    ===================== */
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --muted: #cbd5e1;
+            --text: #f8fafc;
+            --brand: #22d3ee;
+            --brand-2: #a78bfa;
+            --accent: #34d399;
+            --danger: #fb7185;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            background: radial-gradient(1200px 800px at 80% -20%, rgba(34, 211, 238, .15), transparent 70%),
+                radial-gradient(900px 700px at 10% -10%, rgba(167, 139, 250, .18), transparent 60%),
+                var(--bg);
+            color: var(--text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1200px, 92%);
+            margin-inline: auto;
+        }
+
+        .section {
+            padding: 64px 0;
+        }
+
+        .section h2 {
+            font-size: clamp(1.4rem, 2vw + 1rem, 2rem);
+            margin: 0 0 18px;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        /* =====================
+    2) HEADER + NAV
+    ===================== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: saturate(1.2) blur(8px);
+            background: linear-gradient(to right, rgba(17, 24, 39, .85), rgba(15, 23, 42, .85));
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .brand {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-weight: 700;
+            letter-spacing: .2px;
+        }
+
+        .brand .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 14px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav a {
+            padding: 8px 10px;
+            border-radius: 10px;
+            font-size: .95rem;
+            color: var(--muted);
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, .06);
+            color: var(--text);
+        }
+
+        .nav a.active {
+            background: linear-gradient(135deg, rgba(34, 211, 238, .15), rgba(167, 139, 250, .12));
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        /* Burger (móvil) */
+        .burger {
+            display: none;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: var(--text);
+            padding: 8px 10px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 840px) {
+            .burger {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .nav ul {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 64px;
+                padding: 16px;
+                flex-direction: column;
+                background: linear-gradient(to bottom, rgba(17, 24, 39, .98), rgba(15, 23, 42, .98));
+                border-bottom: 1px solid rgba(255, 255, 255, .06);
+                display: none;
+            }
+
+            .nav ul.open {
+                display: flex;
+            }
+        }
+
+        /* =====================
+    3) HERO / INTRO
+    ===================== */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 28px;
+            align-items: center;
+            padding: 48px 0;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .9rem;
+            color: var(--bg);
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            padding: 6px 10px;
+            border-radius: 999px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 2.5vw + 1.2rem, 3rem);
+            margin: 10px 0 8px;
+            line-height: 1.08;
+        }
+
+        .hero p {
+            color: var(--muted);
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 18px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        @media (max-width: 920px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .kbd {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: .9rem;
+            border: 1px solid rgba(255, 255, 255, .2);
+            padding: .15rem .4rem;
+            border-radius: 8px;
+        }
+
+        /* =====================
+    4) GRELHAS / CARDS
+    ===================== */
+        .grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .grid.videos {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        }
+
+        .grid.audios {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        }
+
+        .grid.images {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        .thumb {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: #0b1224;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .thumb video {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: #000;
+        }
+
+        .thumb .pad {
+            padding: 12px;
+        }
+
+        .caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .caption h3 {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .badge {
+            font-size: .8rem;
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: var(--muted);
+        }
+
+        /*calculadora*/
+        .calculator-section {
+            background: linear-gradient(135deg, rgba(34, 211, 238, .1), rgba(167, 139, 250, .1));
+            border-radius: 18px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .calculator-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: var(--brand);
+            font-size: 0.95rem;
+        }
+
+        .input-group input,
+        .input-group select {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--brand);
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: #041421;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .calculator-results {
+            background: rgba(255, 255, 255, .03);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .result-label {
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .result-value {
+            color: var(--accent);
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .binary-visualization {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(0, 0, 0, .2);
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .binary-row {
+            display: flex;
+            margin-bottom: 5px;
+            justify-content: center;
+        }
+
+        .binary-cell {
+            width: 25px;
+            text-align: center;
+            padding: 3px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            font-size: 0.8rem;
+        }
+
+        .network-bit {
+            background: rgba(34, 211, 238, 0.3);
+        }
+
+        .host-bit {
+            background: rgba(167, 139, 250, 0.3);
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .example-btn {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .example-btn:hover {
+            background: rgba(255, 255, 255, .08);
+            border-color: var(--brand);
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: var(--brand);
+            font-size: 0.9rem;
+        }
+
+        .example-desc {
+            color: var(--muted);
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .calculator-section {
+                padding: 20px;
+            }
+        }
+
+        /* =====================
+    5) MAPA
+    ===================== */
+        .map-wrap {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .map-inputs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .input,
+        .btn {
+            background: rgba(255, 255, 255, .04);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .btn {
+            cursor: pointer;
+        }
+
+        iframe.map {
+            width: 100%;
+            height: 420px;
+            border: 0;
+            border-radius: 16px;
+        }
+
+        /* =====================
+    6) GALERÍA DE IMÁGENES + MODAL
+    ===================== */
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .filters .btn.active {
+            outline: 2px solid var(--brand);
+        }
+
+        .grid.images img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            cursor: pointer;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .75);
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s ease;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .lightbox.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-inner {
+            max-width: min(92vw, 1100px);
+            max-height: 88vh;
+            display: grid;
+            gap: 12px;
+            background: #0b1224;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 16px;
+            padding: 12px;
+        }
+
+        .lightbox img {
+            max-height: 72vh;
+            width: auto;
+            justify-self: center;
+            border-radius: 12px;
+        }
+
+        .lightbox .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .2);
+            color: var(--text);
+            padding: 8px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* =====================
+    7) UTILIDADES
+    ===================== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .spacer {
+            height: 20px;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: #041421;
+            border: 0;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+
+        .top-btn {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            opacity: .85;
+            z-index: 99;
+        }
+
+        /* =====================
+    8) SECCIÓN SOBRE MÍ
+    ===================== */
+        .rejilla-creativa {
+            background: linear-gradient(to right, #03045e, #0077b6);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+        }
+
+        .grid-container .card:nth-child(1) {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .grid-container .card:nth-child(2) {
+            grid-column: 2;
+            grid-row: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-container .card:nth-child(3) {
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .grid-container .card:nth-child(4) {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .grid-container .card:nth-child(5) {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .grid-container .card:nth-child(6) {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .rejilla-creativa .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px 20px;
+            transition: transform 0.3s ease;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .rejilla-creativa .card:hover {
+            transform: scale(1.05);
+        }
+
+        .imagen-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.15) !important;
+        }
+
+        .imagen-perfil {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #00b4d8;
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.7);
+            margin-bottom: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .grid-container .card:nth-child(1),
+            .grid-container .card:nth-child(2),
+            .grid-container .card:nth-child(3),
+            .grid-container .card:nth-child(4),
+            .grid-container .card:nth-child(5),
+            .grid-container .card:nth-child(6) {
+                grid-column: 1;
+                grid-row: auto;
+            }
+
+            .rejilla-creativa .card {
+                min-height: 150px;
+            }
+        }
+
+        /* =====================
+    9) SECCIÓN CONTACTO
+    ===================== */
+        #contacto {
+            padding: 40px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 18px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: var(--shadow);
+        }
+
+        #contacto h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #formulario-contacto .campo {
+            margin-bottom: 15px;
+        }
+
+        #formulario-contacto label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        #formulario-contacto input,
+        #formulario-contacto textarea {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, .04);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        #formulario-contacto button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: #041421;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #formulario-contacto button:hover {
+            opacity: 0.9;
+        }
+
+        /* =====================
+    10) SIMULADOR DE TOPOLOGÍAS
+    ===================== */
+        #simulador-topologias {
+            background-color: #0d0d0d;
+            color: #00ffcc;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .selector-topologia {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .selector-topologia label {
+            font-weight: bold;
+            color: var(--brand);
+        }
+
+        .selector-topologia select {
+            background-color: #111827;
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .2);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        #simularBtn {
+            background-color: var(--brand);
+            color: #0f172a;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        #simularBtn:hover {
+            transform: scale(1.05);
+            background-color: var(--accent);
+        }
+
+        .simulador-visual {
+            margin-top: 2rem;
+            border: 2px dashed var(--brand);
+            padding: 1rem;
+            min-height: 200px;
+            display: grid;
+            place-items: center;
+            background-color: #111827;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .simulador-visual img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 12px rgba(34, 211, 238, .3);
+        }
+
+        /* =====================
+    11) SECCIÓN IA EN REDES
+    ===================== */
+        .concept-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .concept-section h3 {
+            color: var(--brand);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        .concept-section ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .concept-section li {
+            margin-bottom: 8px;
+            color: var(--muted);
+        }
+
+        .benefits-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, .1), rgba(34, 211, 238, .05));
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .benefits-section h4 {
+            color: var(--accent);
+            margin: 0 0 15px 0;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, .05);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .future-trends {
+            background: linear-gradient(135deg, rgba(167, 139, 250, .1), rgba(34, 211, 238, .05));
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .future-trends h4 {
+            color: var(--brand-2);
+            margin: 0 0 12px 0;
+        }
+
+        .future-trends ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .future-trends li {
+            margin-bottom: 8px;
+            color: var(--muted);
+        }
+
+        /* Compensa header sticky para los anclajes */
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* Motion reduce */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        .footer {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.98));
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-info {
+            text-align: left;
+        }
+
+        .footer-info p {
+            margin: 5px 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-info strong {
+            color: var(--brand);
+            font-size: 1rem;
+        }
+
+        .footer-copyright {
+            text-align: right;
+        }
+
+        .footer-copyright p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .footer-info,
+            .footer-copyright {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container nav" aria-label="Navegación principal">
+            <a href="#inicio" class="brand" aria-label="Ir a inicio">
+                <span class="dot" aria-hidden="true"></span>
+                Portafolio Silvia Lopez
+            </a>
+            <button id="burger" class="burger" aria-controls="menu" aria-expanded="false">☰ Menú</button>
+            <ul id="menu" role="menubar">
+                <li role="none"><a role="menuitem" class="active" href="#sobre-mi">Sobre mí</a></li>
+                <li role="none"><a role="menuitem" href="#habilidades">Habilidades</a></li>
+                <li role="none"><a role="menuitem" href="#topologias">Topologías</a></li>
+                <li role="none"><a role="menuitem" href="#ia-redes">Redes Inteligentes</a></li>
+                <li role="none"><a role="menuitem" href="#calculadora">Calculadora</a></li>
+                <li role="none"><a role="menuitem" href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="inicio" class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <div>
+                <span class="pill">Portafolio Profesional</span>
+                <h1>Explora el mundo de las redes con visualizaciones interactivas</h1>
+                <p class="muted">
+                    Diseñar un portafolio interactivo que presente conocimientos y proyectos sobre redes CCNA 1,
+                    incluyendo
+                    estructura de red, modelo OSI, direccionamiento IP, topologías LAN/WAN y simulaciones básicas,
+                    utilizando
+                    HTML, CSS, JavaScript y GitHub como herramientas de desarrollo y despliegue.
+                </p>
+                <div class="spacer"></div>
+                <a class="cta" href="#ia-redes">Redes Inteligentes</a>
+            </div>
+
+            <div class="card">
+                <details open>
+                    <summary><strong>🌐 Contenido Especializado en Redes</strong></summary>
+                    <ul>
+                        <li><strong>Simulador de Topologías</strong> - Visualiza y comprende redes en estrella, malla,
+                            anillo y configuraciones híbridas</li>
+                        <li><strong>Calculadora de Subneteo Avanzada</strong> - Calcula direcciones de red, broadcast y
+                            rangos IP con visualización binaria</li>
+                        <li><strong>Laboratorio de Redes Interactivo</strong> - Galerías multimedia con videos
+                            educativos sobre OSI, TCP/IP y protocolos</li>
+                        <li><strong>Dashboard de Habilidades CCNA</strong> - Modelo OSI, direccionamiento IP,
+                            configuración de routers y switches</li>
+                        <li><strong>Sección IA en Networking</strong> - Automatización inteligente, seguridad predictiva
+                            y tendencias futuras</li>
+                    </ul>
+                    <p class="muted">
+                        🎯 <strong>Portafolio Técnico Integral</strong>: Combina fundamentos de CCNA con herramientas
+                        prácticas
+                        para el aprendizaje y demostración de competencias en administración de redes.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- GALERÍA DE VIDEOS -->
+        <section id="videos" class="section">
+            <h2>Aprende Redes en Acción</h2>
+            <p class="muted">Explora conceptos clave como OSI, subneteo y topologías a través de contenido visual.</p>
+            <div class="grid videos">
+                <!-- Video 1: Curso de redes para principiantes -->
+                <figure class="thumb">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/k2e6eWyn0fE"
+                        title="Curso de Redes para Principiantes #1" frameborder="0" allowfullscreen></iframe>
+                    <div class="pad caption">
+                        <h3>Redes para Principiantes</h3>
+                        <span class="badge">YouTube</span>
+                    </div>
+                </figure>
+
+                <!-- Video 2: Introducción al modelo OSI -->
+                <figure class="thumb">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/jdKRx2BxSMs"
+                        title="Modelo OSI explicado" frameborder="0" allowfullscreen></iframe>
+                    <div class="pad caption">
+                        <h3>Modelo OSI explicado</h3>
+                        <span class="badge">YouTube</span>
+                    </div>
+                </figure>
+
+                <!-- Video 3: Subneteo básico -->
+                <figure class="thumb">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/oy_vnFR-nzI"
+                        title="Subneteo básico" frameborder="0" allowfullscreen></iframe>
+                    <div class="pad caption">
+                        <h3>Topologías</h3>
+                        <span class="badge">YouTube</span>
+                    </div>
+                </figure>
+
+                <!-- Video 4: ¿Qué es una red? -->
+                <figure class="thumb">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/gIye5ECo06E"
+                        title="¿Qué es una red?" frameborder="0" allowfullscreen></iframe>
+                    <div class="pad caption">
+                        <h3>Protocolos de internet</h3>
+                        <span class="badge">YouTube</span>
+                    </div>
+                </figure>
+            </div>
+        </section>
+        <!-- GALERÍA DE AUDIOS -->
+    <section id="audios" class="section">
+      <h2>Presentacion</h2>
+      <p class="muted">Presentacion realizada con Ia.</p>
+      <div class="grid audios">
+        <article class="thumb">
+          <div class="pad">
+            <h3>Audio</h3>
+            <audio preload="none" controls style="width:100%">
+              <source src="mp3-output-ttsfree(dot)com.mp3" type="audio/mpeg">
+              Tu navegador no soporta audio HTML5.
+            </audio>
+    </section>
+
+
+
+        <!-- SIMULADOR DE TOPOLOGÍAS -->
+        <section id="topologias" class="section">
+            <h2>Visualizador de Topologías de Red</h2>
+            <p class="muted">Observa las principales topologías de red y comprende sus características visualmente.</p>
+
+            <div class="selector-topologia">
+                <label for="tipoTopologia">Selecciona una topología:</label>
+                <select id="tipoTopologia">
+                    <option value="estrella">Estrella</option>
+                    <option value="bus">Bus</option>
+                    <option value="anillo">Anillo</option>
+                    <option value="malla">Malla</option>
+                    <option value="arbol">Árbol</option>
+                    <option value="hibrida">Híbrida</option>
+                </select>
+
+                <button id="simularBtn">Simular</button>
+            </div>
+
+            <div id="resultadoSimulacion" class="simulador-visual">
+                <p class="muted">Selecciona una topología y haz clic en "Simular" para visualizarla.</p>
+            </div>
+        </section>
+
+        <!-- CALCULADORA DE SUBREDES -->
+        <section id="calculadora" class="section calculator-section">
+            <h2>Calculadora de Subredes</h2>
+            <p class="muted">Calcula direcciones de red, broadcast y rangos de hosts para practicar subneteo.</p>
+
+            <div class="calculator-grid">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label for="ip-address">Dirección IP:</label>
+                        <input type="text" id="ip-address" placeholder="Ej: 192.168.1.0" value="192.168.1.0">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="subnet-mask">Máscara de Subred:</label>
+                        <select id="subnet-mask">
+                            <option value="24">255.255.255.0 (/24) - 256 hosts</option>
+                            <option value="25">255.255.255.128 (/25) - 128 hosts</option>
+                            <option value="26">255.255.255.192 (/26) - 64 hosts</option>
+                            <option value="27">255.255.255.224 (/27) - 32 hosts</option>
+                            <option value="28">255.255.255.240 (/28) - 16 hosts</option>
+                            <option value="29">255.255.255.248 (/29) - 8 hosts</option>
+                            <option value="30">255.255.255.252 (/30) - 4 hosts</option>
+                        </select>
+                    </div>
+
+                    <button class="calculate-btn" id="calculate-btn">Calcular Subred</button>
+
+                    <div class="examples-grid">
+                        <div class="example-btn" data-ip="192.168.1.0" data-mask="24">
+                            <div class="example-title">Red Hogareña</div>
+                            <div class="example-desc">192.168.1.0/24</div>
+                        </div>
+                        <div class="example-btn" data-ip="10.0.0.0" data-mask="16">
+                            <div class="example-title">Empresa Pequeña</div>
+                            <div class="example-desc">10.0.0.0/16</div>
+                        </div>
+                        <div class="example-btn" data-ip="172.16.0.0" data-mask="20">
+                            <div class="example-title">Oficina Mediana</div>
+                            <div class="example-desc">172.16.0.0/20</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-results">
+                    <h3>Resultados de la Subred</h3>
+                    <div class="result-item">
+                        <span class="result-label">Dirección de Red:</span>
+                        <span class="result-value" id="network-address">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Primer Host:</span>
+                        <span class="result-value" id="first-host">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Último Host:</span>
+                        <span class="result-value" id="last-host">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Broadcast:</span>
+                        <span class="result-value" id="broadcast-address">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Hosts Utilizables:</span>
+                        <span class="result-value" id="usable-hosts">-</span>
+                    </div>
+
+                    <div class="binary-visualization" id="binary-visualization">
+                        <p>La visualización binaria aparecerá aquí...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAPAS -->
+        <section id="mapas" class="section">
+            <h2>🗺️ Ubicación de Mi Institución</h2>
+            <p class="muted">Centro Tecnológico de Avanzada SNPP - Donde estudio Diseño de Sistemas Informáticos y
+                Comunicación TIC</p>
+            <div class="map-wrap">
+                <div class="map-inputs">
+                    <input id="place" class="input" placeholder="MF6G+528, San Lorenzo 111434"
+                        value="CENTRO TECNOLOGICO DE AVANZADA SNPP" aria-label="Buscar lugar" />
+                    <button id="setMap" class="btn">Mostrar en mapa</button>
+                    <button id="ctaSnpp" class="btn">CTA SNPP</button>
+                    <button id="sanLorenzo" class="btn">San Lorenzo</button>
+                </div>
+                <iframe id="mapFrame" class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen
+                    src="https://www.google.com/maps?q=CENTRO+TECNOLOGICO+DE+AVANZADA+SNPP+San+Lorenzo+Paraguay&output=embed"></iframe>
+            </div>
+        </section>
+
+        <!-- GALERÍA DE IMÁGENES -->
+        <section id="imagenes" class="section">
+            <h2>🖼️ Galería de imágenes</h2>
+            <p class="muted">Haz clic para ver en <em>modal</em>. Usa los filtros por categoría.</p>
+
+            <div class="filters" role="toolbar" aria-label="Filtros de imágenes">
+                <button class="btn active" data-filter="todos">Todos</button>
+                <button class="btn" data-filter="redes">Redes</button>
+                <button class="btn" data-filter="tecnologia">Tecnología</button>
+            </div>
+
+            <div id="imageGrid" class="grid images">
+                <!-- Imágenes de redes -->
+                <img src="assets/istockphoto-522755361-612x612.jpg" alt="Infraestructura de red y servidores"
+                    loading="lazy" data-cat="redes" />
+                <img src="assets/photo-1579274216947-86eaa4b00475.jpeg" alt="Cableado estructurado de red"
+                    loading="lazy" data-cat="redes" />
+
+                <!-- Imágenes de tecnología -->
+                <img src="assets/photo-1519389950473-47ba0277781c.jpeg" alt="Desarrollo de software y código"
+                    loading="lazy" data-cat="tecnologia" />
+                <img src="assets/photo-1691435828932-911a7801adfb.jpeg" alt="Inteligencia artificial y data centers"
+                    loading="lazy" data-cat="tecnologia" />
+
+                <!-- Imagen adicional para completar la galería -->
+                <img src="assets/hombre-trabajando-en-un-interruptor-de-ethernet.jpg"
+                    alt="Arquitectura moderna tecnológica" loading="lazy" data-cat="tecnologia" />
+            </div>
+
+            <!-- Modal / Lightbox -->
+            <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+                <div class="lightbox-inner">
+                    <div class="top">
+                        <span id="lbCaption" class="muted">Imagen</span>
+                        <button id="lbClose" class="icon-btn" aria-label="Cerrar (Esc)">✕</button>
+                    </div>
+                    <img id="lbImg" alt="Vista ampliada" />
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SOBRE MÍ -->
+        <section id="sobre-mi" class="section rejilla-creativa">
+            <h2>Sobre mí</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Formación Académica</h3>
+                    <p><strong>Diseño de Sistemas Informáticos y de Comunicación TIC</strong></p>
+                    <ul>
+
+                        <li>Desarrollo de aplicaciones web y diseño de interfaces</li>
+                        <li>Administración de sistemas y servicios de red</li>
+                        <li>Certificación CCNA 1 en proceso</li>
+                    </ul>
+                    <p class="muted">Integrando conocimientos técnicos con creatividad en el diseño web.</p>
+                </div>
+
+                <div class="card imagen-card">
+                    <img src="assets/1759705995902.jpg" alt="Silvia Lopez" class="imagen-perfil">
+                    <h3>Silvia Lopez</h3>
+                    <p>Apasionada por el diseño visual, tecnologia y redes.</p>
+                </div>
+
+                <div class="card">
+                    <h3> Intereses Tecnológicos</h3>
+                    <p><strong>Especialización en tecnologías emergentes</strong></p>
+                    <ul>
+                        <li><strong>Inteligencia Artificial</strong> aplicada a redes y automatización</li>
+                        <li><strong>Cloud Computing</strong> y virtualización de redes</li>
+                        <li><strong>Desarrollo Frontend</strong> con frameworks modernos</li>
+                    </ul>
+                    <p class="muted">Explorando la intersección entre redes, IA y desarrollo web.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Curiosidad Tecnológica</h3>
+                    <p><strong>Aprendizaje activo con herramientas de IA</strong></p>
+                    <ul>
+                        <li>Desarrollo mis habilidades en <strong>programación frontend</strong> utilizando asistentes
+                            de IA</li>
+                        <li>Aplico <strong>algoritmos de inteligencia artificial</strong> para optimizar el aprendizaje
+                            de redes</li>
+                        <p class="muted">Combinando metodologías tradicionales con herramientas de IA para acelerar mi
+                            aprendizaje.</p>
+                </div>
+                <div class="card">
+                    <h3>Inspiración</h3>
+                    <p>"La tecnología conecta lo que el corazón sueña."</p>
+                </div>
+
+                <div class="card">
+                    <h3>Visión Futura</h3>
+                    <p><strong>Desarrollo integral en Tecnologías de la Información</strong></p>
+                    <ul>
+                        <li>Dominar todas las áreas de <strong>TIC</strong>: redes, programación, seguridad y cloud
+                            computing</li>
+                        <li>Trabajar en <strong>empresas innovadoras</strong> que desarrollen soluciones tecnológicas
+                            impactantes</li>
+                        <li>Crear <strong>soluciones tecnológicas accesibles</strong> que beneficien a la sociedad</li>
+                    </ul>
+                    <p class="muted">Aspiro a ser una profesional completa en TIC, trabajando en proyectos con propósito
+                        social.</p>
+                </div>
+        </section>
+
+        <!-- SECCIÓN HABILIDADES -->
+        <section id="habilidades" class="section">
+            <h2>Habilidades Técnicas</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Modelo OSI y TCP/IP</h3>
+                    <p>Comprensión profunda de los modelos de referencia de red.</p>
+                </div>
+                <div class="card">
+                    <h3>Subneteo y direccionamiento IP</h3>
+                    <p>Capacidad para dividir redes y asignar direcciones IP eficientemente.</p>
+                </div>
+                <div class="card">
+                    <h3>Configuración de routers y switches</h3>
+                    <p>Habilidades básicas en configuración de dispositivos de red.</p>
+                </div>
+                <div class="card">
+                    <h3>Diseño de topologías LAN/WAN</h3>
+                    <p>Capacidad para diseñar redes locales y de área amplia.</p>
+                </div>
+                <div class="card">
+                    <h3>Simuladores de red</h3>
+                    <p>Experiencia con herramientas como Packet Tracer.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN IA EN REDES -->
+        <section id="ia-redes" class="section">
+            <h2>🤖 IA en la Gestión de Redes</h2>
+            <div class="card">
+                <div class="concept-section">
+                    <h3>🔧 Automatización Inteligente de Redes</h3>
+                    <p>La IA está revolucionando la gestión de redes mediante sistemas que pueden:</p>
+                    <ul>
+                        <li><strong>Auto-diagnosticar</strong> fallos antes de que afecten a los usuarios</li>
+                        <li><strong>Optimizar dinámicamente</strong> el tráfico en tiempo real</li>
+                        <li><strong>Predecir necesidades</strong> de capacidad y escalado</li>
+                        <li><strong>Gestionar configuraciones</strong> de forma autónoma</li>
+                    </ul>
+                </div>
+
+                <div class="concept-section">
+                    <h3>🛡️ Ciberseguridad Avanzada con Machine Learning</h3>
+                    <p>Los algoritmos de ML analizan patrones de tráfico para:</p>
+                    <ul>
+                        <li>Detectar <strong>comportamientos anómalos</strong> y posibles intrusiones</li>
+                        <li>Identificar <strong>malware zero-day</strong> mediante análisis heurístico</li>
+                        <li>Implementar <strong>políticas de seguridad adaptativas</strong></li>
+                        <li>Predecir <strong>vectores de ataque</strong> emergentes</li>
+                    </ul>
+                </div>
+
+                <div class="concept-section">
+                    <h3>📊 Análisis Predictivo para QoS</h3>
+                    <p>Sistemas que anticipan problemas de calidad de servicio:</p>
+                    <ul>
+                        <li><strong>Modelado de tráfico</strong> usando series temporales</li>
+                        <li><strong>Predicción de congestión</strong> en enlaces críticos</li>
+                        <li><strong>Optimización automática</strong> de rutas y balanceo de carga</li>
+                        <li><strong>Planificación de capacidad</strong> basada en tendencias</li>
+                    </ul>
+                </div>
+
+                <div class="concept-section">
+                    <h3>🤖 Chatbots y Asistentes para Networking</h3>
+                    <p>Asistentes virtuales especializados en redes:</p>
+                    <ul>
+                        <li><strong>Troubleshooting automático</strong> mediante NLP</li>
+                        <li><strong>Generación de configuraciones</strong> basadas en mejores prácticas</li>
+                        <li><strong>Documentación automática</strong> de topologías y cambios</li>
+                        <li><strong>Entrenamiento interactivo</strong> para técnicos</li>
+                    </ul>
+                </div>
+
+                <div class="benefits-section">
+                    <h4>🚀 Beneficios Tangibles</h4>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <strong>Reducción del 70%</strong> en tiempo de resolución de incidencias
+                        </div>
+                        <div class="benefit-item">
+                            <strong>Mejora del 40%</strong> en utilización de recursos
+                        </div>
+                        <div class="benefit-item">
+                            <strong>Detección 5x más rápida</strong> de amenazas de seguridad
+                        </div>
+                        <div class="benefit-item">
+                            <strong>Reducción del 60%</strong> en errores de configuración
+                        </div>
+                    </div>
+                </div>
+
+                <div class="future-trends">
+                    <h4>🔮 Tendencias Futuras</h4>
+                    <ul>
+                        <li><strong>Redes completamente autónomas</strong> (Self-Driving Networks)</li>
+                        <li><strong>IA generativa</strong> para diseño de infraestructuras</li>
+                        <li><strong>Federated Learning</strong> para análisis distribuido y privado</li>
+                        <li><strong>Digital Twins</strong> para simulaciones y testing</li>
+                    </ul>
+                </div>
+
+                <p class="muted">La convergencia entre redes e inteligencia artificial está creando infraestructuras más
+                    resilientes, seguras y eficientes, transformando fundamentalmente cómo diseñamos, implementamos y
+                    gestionamos las comunicaciones modernas.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CONTACTO -->
+        <section id="contacto" class="section">
+            <h2>Contacto</h2>
+            <form id="formulario-contacto">
+                <div class="campo">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="campo">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="campo">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <button id="toTop" class="cta top-btn" aria-label="Volver arriba">↑ Arriba</button>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Silvia Lopez</strong></p>
+                    <p>CTA-SNPP Paraguay Corea</p>
+                    <p>Semestre 2 - Turno Noche</p>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2025 Portafolio de Redes. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // =====================================================
+        // JS PRINCIPAL — Explicado paso a paso
+        // =====================================================
+
+        // 1) Menú hamburguesa en móvil
+        const burger = document.getElementById('burger');
+        const menu = document.getElementById('menu');
+        if (burger && menu) {
+            burger.addEventListener('click', () => {
+                const open = menu.classList.toggle('open');
+                burger.setAttribute('aria-expanded', String(open));
+            });
+        }
+
+        // 2) Enlaces activos según la sección visible (IntersectionObserver)
+        const navLinks = Array.from(document.querySelectorAll('header .nav a[href^="#"]'));
+        const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = '#' + entry.target.id;
+                const link = navLinks.find(a => a.getAttribute('href') === id);
+                if (link) {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                }
+            });
+        }, { rootMargin: '-50% 0px -40% 0px', threshold: 0 });
+        sections.forEach(sec => obs.observe(sec));
+
+        // 3) Botón "Arriba"
+        const toTop = document.getElementById('toTop');
+        if (toTop) {
+            toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+
+        // 3.1) Simulación de topologías LAN/WAN
+        const topologias = {
+            estrella: {
+                nombre: "Estrella",
+                descripcion: "Todos los nodos se conectan a un switch central.",
+                caracteristicas: [
+                    "Alta velocidad de transmisión",
+                    "Fácil de instalar y mantener",
+                    "Dependencia del nodo central"
+                ],
+                imagen: "assets/top-estrella.png"
+            },
+            bus: {
+                nombre: "Bus",
+                descripcion: "Todos los nodos comparten un mismo canal de comunicación.",
+                caracteristicas: [
+                    "Económica en cableado",
+                    "Difícil de diagnosticar fallos",
+                    "Rendimiento decrece con más nodos"
+                ],
+                imagen: "assets/top-bus.png"
+            },
+            anillo: {
+                nombre: "Anillo",
+                descripcion: "Cada nodo se conecta al siguiente formando un ciclo.",
+                caracteristicas: [
+                    "Transmisión ordenada",
+                    "Un fallo puede afectar toda la red",
+                    "Uso eficiente del ancho de banda"
+                ],
+                imagen: "assets/top-anillo.png"
+            },
+            malla: {
+                nombre: "Malla",
+                descripcion: "Cada nodo se conecta con todos los demás.",
+                caracteristicas: [
+                    "Alta redundancia",
+                    "Excelente tolerancia a fallos",
+                    "Costosa y compleja"
+                ],
+                imagen: "assets/top-malla.png"
+            },
+            arbol: {
+                nombre: "Árbol",
+                descripcion: "Topología jerárquica que combina estrella y bus.",
+                caracteristicas: [
+                    "Escalable y organizada",
+                    "Dependencia de nodos raíz",
+                    "Ideal para redes grandes"
+                ],
+                imagen: "assets/top-arbol.png"
+            },
+            hibrida: {
+                nombre: "Híbrida",
+                descripcion: "Combinación de dos o más topologías.",
+                caracteristicas: [
+                    "Flexible y adaptable",
+                    "Compleja de implementar",
+                    "Optimiza rendimiento según necesidad"
+                ],
+                imagen: "assets/4_6 topologia_malla.png"
+            }
+        };
+
+        // Simulación visual de topologías predefinidas
+        const simularBtn = document.getElementById("simularBtn");
+        if (simularBtn) {
+            simularBtn.addEventListener("click", () => {
+                const tipo = document.getElementById("tipoTopologia").value;
+                const resultado = document.getElementById("resultadoSimulacion");
+                const datos = topologias[tipo];
+
+                resultado.innerHTML = `
+          <h3>${datos.nombre}</h3>
+          <p>${datos.descripcion}</p>
+          <img src="${datos.imagen}" alt="${datos.nombre}" style="max-width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+          <ul style="text-align:left; padding-left:1rem;">
+            ${datos.caracteristicas.map(c => `<li>🔹 ${c}</li>`).join("")}
+          </ul>
+        `;
+            });
+        }
+
+        // =====================================================
+        // CALCULADORA DE SUBREDES
+        // =====================================================
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Elementos de la calculadora
+            const calculateBtn = document.getElementById('calculate-btn');
+            const ipAddressInput = document.getElementById('ip-address');
+            const subnetMaskSelect = document.getElementById('subnet-mask');
+
+            // Elementos de resultados
+            const networkAddressEl = document.getElementById('network-address');
+            const firstHostEl = document.getElementById('first-host');
+            const lastHostEl = document.getElementById('last-host');
+            const broadcastAddressEl = document.getElementById('broadcast-address');
+            const usableHostsEl = document.getElementById('usable-hosts');
+            const binaryVisualizationEl = document.getElementById('binary-visualization');
+
+            // Ejemplos rápidos
+            const exampleBtns = document.querySelectorAll('.example-btn');
+
+            // Función para calcular la subred
+            function calculateSubnet() {
+                const ipAddress = ipAddressInput.value.trim();
+                const subnetBits = parseInt(subnetMaskSelect.value);
+
+                // Validar IP
+                if (!isValidIP(ipAddress)) {
+                    alert('Por favor ingresa una dirección IP válida');
+                    return;
+                }
+
+                // Calcular
+                const results = calculateSubnetInfo(ipAddress, subnetBits);
+
+                // Mostrar resultados
+                displayResults(results);
+            }
+
+            // Función para validar IP
+            function isValidIP(ip) {
+                const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
+                if (!ipRegex.test(ip)) return false;
+
+                const parts = ip.split('.');
+                return parts.every(part => {
+                    const num = parseInt(part);
+                    return num >= 0 && num <= 255;
+                });
+            }
+
+            // Función principal de cálculo
+            function calculateSubnetInfo(ip, subnetBits) {
+                const ipParts = ip.split('.').map(part => parseInt(part));
+
+                // Calcular máscara
+                const mask = calculateMask(subnetBits);
+                const maskParts = mask.split('.').map(part => parseInt(part));
+
+                // Dirección de red (AND lógico entre IP y máscara)
+                const networkParts = ipParts.map((part, i) => part & maskParts[i]);
+                const networkAddress = networkParts.join('.');
+
+                // Dirección de broadcast (OR lógico entre red y máscara invertida)
+                const invertedMaskParts = maskParts.map(part => part ^ 255);
+                const broadcastParts = networkParts.map((part, i) => part | invertedMaskParts[i]);
+                const broadcastAddress = broadcastParts.join('.');
+
+                // Primer y último host
+                const firstHostParts = [...networkParts];
+                firstHostParts[3] += 1;
+                const firstHost = firstHostParts.join('.');
+
+                const lastHostParts = [...broadcastParts];
+                lastHostParts[3] -= 1;
+                const lastHost = lastHostParts.join('.');
+
+                // Número de hosts utilizables
+                const totalHosts = Math.pow(2, 32 - subnetBits);
+                const usableHosts = totalHosts - 2;
+
+                return {
+                    ipAddress: ip,
+                    subnetBits: subnetBits,
+                    subnetMask: mask,
+                    networkAddress: networkAddress,
+                    firstHost: firstHost,
+                    lastHost: lastHost,
+                    broadcastAddress: broadcastAddress,
+                    usableHosts: usableHosts,
+                    totalHosts: totalHosts,
+                    ipBinary: ipParts.map(part => part.toString(2).padStart(8, '0')).join('.'),
+                    maskBinary: maskParts.map(part => part.toString(2).padStart(8, '0')).join('.')
+                };
+            }
+
+            // Calcular máscara a partir de bits
+            function calculateMask(bits) {
+                let mask = 0;
+                for (let i = 0; i < bits; i++) {
+                    mask |= (1 << (31 - i));
+                }
+
+                return [
+                    (mask >>> 24) & 255,
+                    (mask >>> 16) & 255,
+                    (mask >>> 8) & 255,
+                    mask & 255
+                ].join('.');
+            }
+
+            // Mostrar resultados
+            function displayResults(results) {
+                networkAddressEl.textContent = results.networkAddress;
+                firstHostEl.textContent = results.firstHost;
+                lastHostEl.textContent = results.lastHost;
+                broadcastAddressEl.textContent = results.broadcastAddress;
+                usableHostsEl.textContent = `${results.usableHosts} (de ${results.totalHosts} total)`;
+
+                // Visualización binaria
+                displayBinaryVisualization(results);
+            }
+
+            // Mostrar visualización binaria
+            function displayBinaryVisualization(results) {
+                const ipBinaryParts = results.ipBinary.split('.');
+                const maskBinaryParts = results.maskBinary.split('.');
+
+                let html = '<h4>Visualización Binaria:</h4>';
+
+                // IP en binario
+                html += '<div class="binary-row">';
+                ipBinaryParts.forEach(part => {
+                    for (let i = 0; i < 8; i++) {
+                        html += `<span class="binary-cell">${part[i]}</span>`;
+                    }
+                    html += '<span style="width: 10px;"></span>';
+                });
+                html += '<span style="margin-left: 10px;">IP</span></div>';
+
+                // Máscara en binario con colores
+                html += '<div class="binary-row">';
+                maskBinaryParts.forEach(part => {
+                    for (let i = 0; i < 8; i++) {
+                        const bitClass = part[i] === '1' ? 'network-bit' : 'host-bit';
+                        html += `<span class="binary-cell ${bitClass}">${part[i]}</span>`;
+                    }
+                    html += '<span style="width: 10px;"></span>';
+                });
+                html += '<span style="margin-left: 10px;">Máscara</span></div>';
+
+                // Leyenda
+                html += `
+          <div style="margin-top: 15px; font-size: 0.8rem;">
+            <span style="color: var(--brand);">■</span> Bits de Red | 
+            <span style="color: var(--brand-2);">■</span> Bits de Host
+          </div>
+        `;
+
+                binaryVisualizationEl.innerHTML = html;
+            }
+
+            // Event Listeners
+            calculateBtn.addEventListener('click', calculateSubnet);
+
+            // Ejemplos rápidos
+            exampleBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const ip = this.getAttribute('data-ip');
+                    const mask = this.getAttribute('data-mask');
+
+                    ipAddressInput.value = ip;
+                    subnetMaskSelect.value = mask;
+
+                    calculateSubnet();
+                });
+            });
+
+            // Calcular automáticamente al cargar
+            calculateSubnet();
+        });
+
+        // 4) Mapas: actualizar iframe según input o botones predefinidos
+        const mapFrame = document.getElementById('mapFrame');
+        const placeInput = document.getElementById('place');
+        const setMapBtn = document.getElementById('setMap');
+        const quickBtns = [
+            { id: 'ctaSnpp', q: 'CENTRO TECNOLOGICO DE AVANZADA SNPP San Lorenzo Paraguay' },
+            { id: 'sanLorenzo', q: 'San Lorenzo, Paraguay' }
+        ];
+
+        function setMap(q) {
+            if (mapFrame) {
+                const url = `https://www.google.com/maps?q=${encodeURIComponent(q)}&output=embed`;
+                mapFrame.src = url;
+            }
+        }
+
+        if (setMapBtn && placeInput) {
+            setMapBtn.addEventListener('click', () => setMap(placeInput.value || 'CENTRO TECNOLOGICO DE AVANZADA SNPP San Lorenzo Paraguay'));
+        }
+
+        quickBtns.forEach(({ id, q }) => {
+            const b = document.getElementById(id);
+            if (b) {
+                b.addEventListener('click', () => setMap(q));
+            }
+        });
+
+        // 5) Filtros de imágenes
+        const filterBar = document.querySelector('.filters');
+        const imgGrid = document.getElementById('imageGrid');
+        if (filterBar && imgGrid) {
+            filterBar.addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+
+                const cat = btn.dataset.filter; // 'todos' | 'naturaleza' | 'ciudad'
+
+                // UI
+                filterBar.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Lógica
+                imgGrid.querySelectorAll('img').forEach(img => {
+                    const show = (cat === 'todos') || (img.dataset.cat === cat);
+                    img.style.display = show ? '' : 'none';
+                });
+            });
+        }
+
+        // 6) Modal (lightbox) para imágenes
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lbImg');
+        const lbCaption = document.getElementById('lbCaption');
+        const lbClose = document.getElementById('lbClose');
+
+        if (imgGrid && lightbox && lbImg && lbCaption && lbClose) {
+            imgGrid.addEventListener('click', (e) => {
+                const img = e.target.closest('img');
+                if (!img) return;
+
+                lbImg.src = img.src.replace('/800/600', '/1200/900'); // imagen un poco más grande
+                lbImg.alt = img.alt;
+                lbCaption.textContent = img.alt;
+                lightbox.classList.add('open');
+                lightbox.setAttribute('aria-hidden', 'false');
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                lightbox.setAttribute('aria-hidden', 'true');
+                lbImg.src = '';
+            }
+
+            lbClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+            });
+        }
+
+        // 7) Mejora: pausa videos al abrir otros (evita audios superpuestos)
+        document.querySelectorAll('video').forEach(v => {
+            v.addEventListener('play', () => {
+                document.querySelectorAll('video').forEach(o => {
+                    if (o !== v) o.pause();
+                });
+                document.querySelectorAll('audio').forEach(a => a.pause());
+            });
+        });
+
+        document.querySelectorAll('audio').forEach(a => {
+            a.addEventListener('play', () => {
+                document.querySelectorAll('audio').forEach(o => {
+                    if (o !== a) o.pause();
+                });
+                document.querySelectorAll('video').forEach(v => v.pause());
+            });
+        });
+
+        // 8) Formulario de contacto
+        const formularioContacto = document.getElementById('formulario-contacto');
+        if (formularioContacto) {
+            formularioContacto.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const nombre = document.getElementById('nombre').value;
+                const email = document.getElementById('email').value;
+                const mensaje = document.getElementById('mensaje').value;
+
+                // Validación simple
+                if (!nombre || !email || !mensaje) {
+                    alert('Por favor, completa todos los campos.');
+                    return;
+                }
+
+                // Simulación de envío
+                alert(`¡Gracias ${nombre}! Tu mensaje ha sido enviado. Te contactaremos en ${email} pronto.`);
+                formularioContacto.reset();
+            });
+        }
+    </script>
+</body>
+
+</html>
